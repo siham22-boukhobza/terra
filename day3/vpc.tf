@@ -75,7 +75,7 @@ resource "aws_eip" "eip-for-nat" {
 }
 //create nat gatway
 resource "aws_nat_gateway" "ngw" {
-  subnet_id = element(aws_subnet.public-subnet[*].id, 0) 
+  subnet_id = element(aws_subnet.public-subnet[*].id, 0)
 
   allocation_id = aws_eip.eip-for-nat.id
   depends_on    = [aws_internet_gateway.internet-gw]
@@ -142,11 +142,11 @@ resource "aws_security_group" "sg-servers" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "inbound-servers" {
-  security_group_id = aws_security_group.sg-servers.id
-  referenced_security_group_id  = aws_security_group.sg-alb.id
-  from_port         = 80
-  ip_protocol       = "tcp"
-  to_port           = 80
+  security_group_id            = aws_security_group.sg-servers.id
+  referenced_security_group_id = aws_security_group.sg-alb.id
+  from_port                    = 80
+  ip_protocol                  = "tcp"
+  to_port                      = 80
 }
 
 resource "aws_vpc_security_group_egress_rule" "outbond-servers" {
